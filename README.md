@@ -16,6 +16,10 @@ There are two main flavors of `projman` : with tracking activated and with no tr
 #### Comparison between `git` and `projman` with no tracking
 
 * `git` keeps old versions of the files, `projman` does not.
+Thus, there are no branches in `projman`.
+
+* `git` offers operations `pull` and `push`.
+In `projman` there is only one such operation, called `sync`.
 
 * `git status` warns you if a change has not been `add`ed by analysing the content of all files in
 the current directory. (subdirectories too ?)
@@ -30,9 +34,9 @@ You change it again, you have to `add` it again to `git`.
 With `projman`, you give this information only once, before or after you modify the file.
 Again, `projman` never looks inside the files, so it does not matter if you have already saved
 the file or if you make further changes later.
-Of course, after you `sync` your files to some other physical support, you must `register`
-any new changes again.
 There is no such thing as `commit -a` in `projman`.
+Of course, you must save all modified files before you `sync` them to some other physical support.
+Also, after a `sync` operation, you must `register` any new changes again.
 
 * When propagating changes, `git` tries to solve conflicts through a tree-way `diff`.
 `projman` never looks inside the files, it only uses a system of tokens.
@@ -54,8 +58,12 @@ I believe `git` is similar in that respect.
 #### Comparison between `git` and `projman` with tracking activated
 
 * `git` keeps old versions of the files, `projman` does not.
+Thus, there are no branches in `projman`.
 
-* `git` registers changes in a two-way process (whose usefulness is not entirely clear to me) :
+* `git` offers operations `pull` and `push`.
+In `projman` there is only one such operation, called `sync`.
+
+* `git` registers changes in a two-stage process (whose usefulness is not entirely clear to me) :
 `add` then `commit` (or the shortcut `commit -a`).
 In `projman` there is only one stage called `register` but it is seldom used if tracking is active.
 
