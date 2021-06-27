@@ -35,7 +35,7 @@ With `projman`, you give this information only once, before or after you modify 
 Again, `projman` never looks inside the files, so it does not matter if you have already saved
 the file or if you make further changes later.
 There is no such thing as `commit -a` in `projman`.
-Of course, you must save all modified files before you `sync` them to some other physical support.
+Of course, you must save all edited files before you `sync` them to some other physical support.
 Also, after a `sync` operation, you must `register` any new changes again.
 
 * When propagating changes, `git` tries to solve conflicts through a tree-way `diff`.
@@ -66,7 +66,7 @@ In `projman` there is only one such operation, called `sync`.
 * `git` registers changes in a two-stage process (whose usefulness is not entirely clear to me) :
 `add` then `commit` (or the shortcut `commit -a`).
 In `projman` there is only one stage called `register` but it is seldom used if tracking is active.
-`git commit -a` is roughly equivalent to doing nothig in `projman` if tracking is active.
+`git commit -a` is roughly equivalent to doing nothing in `projman` if tracking is active.
 
 * Just as for `.gitignore`, the file `.projman/ignore` is important for controlling what will be propagated.
 
