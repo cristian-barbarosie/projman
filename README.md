@@ -25,7 +25,7 @@ the current directory. (subdirectories too ?)
 `add` then `commit`.
 In `projman` there is only one stage called `register`.
 
-* You need to inform `git` about changes to a fil __after__ you have edited (and saved) your file.
+* You need to inform `git` about changes to a file __after__ you have edited (and saved) your file.
 You change it again, you have to `add` it again to `git`.
 With `projman`, you give this information only once, before or after you modify the file.
 Again, `projman` never looks inside the files, so it does not matter if you have already saved
@@ -36,7 +36,7 @@ There is no such thing as `commit -a` in `projman`.
 
 * When propagating changes, `git` tries to solve conflicts through a tree-way `diff`.
 `projman` never looks inside the files, it only uses a system of tokens.
-If two different people have made changes to the same file between two `sync`s,
+If changes have been made to the same file on different repositories,
 `projman` will bluntly report a conflict which you will have to solve manually.
 
 * `projman` treats a whole directory as one file only, that is, when doing `sync`, it looks at
@@ -74,7 +74,7 @@ so there is no need to synchronize clocks.
 
 * When propagating changes, `git` tries to solve conflicts through a tree-way `diff`.
 `projman` never looks inside the files, it only uses a system of tokens.
-If two different people have made changes to the same file between two `sync`s,
+If changes have been made to the same file on different repositories,
 `projman` will bluntly report a conflict which you will have to solve manually.
 
 * `projman` treats a whole directory as one file only, that is, when doing `sync`, it looks at
@@ -99,8 +99,7 @@ if you want that I guess you could somehow use `projman` on top of `CVS` but I'm
 
 #### Plan of action 
 
-I wrote `projman` in `python2`, so I guess my first move should be
-to translate it to `python3`.
+I wrote `projman` in `python2`, so I guess my first move should be to translate it to `python3`.
 This may take some time.
 
 Don't look for the source file, I haven't published it yet.
