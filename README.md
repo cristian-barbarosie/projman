@@ -43,7 +43,7 @@ Also, after a `sync` operation, you must `register` any new changes again.
 If changes have been made to the same file on different repositories,
 `projman` will bluntly report a conflict which you will have to solve manually.
 
-* `projman` treats a whole directory as one file only, that is, when doing `sync`, it looks at
+* `projman` treats a whole directory as one file only, that is, when `sync`hronizing, it looks at
 the tokens describing the modification history of that directory and if it finds that they
 are up-to-date, it does not descend into that directory for further analysis.
 So, for instance, if you give a `sync` command between two mirrors of the same project
@@ -84,7 +84,7 @@ so there is no need to synchronize clocks.
 If changes have been made to the same file on different repositories,
 `projman` will bluntly report a conflict which you will have to solve manually.
 
-* `projman` treats a whole directory as one file only, that is, when doing `sync`, it looks at
+* `projman` treats a whole directory as one file only, that is, when `sync`hronizing, it looks at
 the tokens describing the modification history of that directory and if it finds that they
 are up-to-date, it does not descend into that directory for further analysis.
 So, for instance, if you give a `sync` command between two mirrors of the same project
