@@ -21,20 +21,20 @@ Thus, there are no branches in `projman`.
 * `git` offers operations `pull` and `push`.
 In `projman` there is only one such operation, called `sync`.
 
-* `git status` warns you if a change has not been `add`ed by analysing the content of all files in
-the current directory. (subdirectories too ?)
-`projman` never looks inside the files, so it cannot tell you that.
-
 * `git` registers changes in a two-stage process (whose usefulness is not entirely clear to me) :
 `add` then `commit`.
 In `projman` there is only one stage called `register`.
+
+* Operations `git commit -a` and `git status` detect changes by analysing the content of all files in
+the current directory. (subdirectories too ?)
+`projman` never looks inside the files, so it cannot detect changes (if tracking is off).
 
 * You need to inform `git` about changes to a file __after__ you have edited (and saved) your file.
 You change it again, you have to `add` it again to `git`.
 With `projman`, you give this information only once, before or after you modify the file.
 Again, `projman` never looks inside the files, so it does not matter if you have already saved
 the file or if you make further changes later.
-There is no such thing as `commit -a` in `projman`.
+There is no such thing as `commit -a` in `projman` (if tracking is off).
 Of course, you must save all edited files before you `sync` them to some other physical support.
 Also, after a `sync` operation, you must `register` any new changes again.
 
@@ -51,7 +51,7 @@ which are up-to-date, `projman` is extremely fast in deciding not to take any ac
 because it only compares tokens relative to the root directory.
 Perhaps `git` is similar in that respect.
 
-* `projman` never looks at timestamps of files or at the current time, 
+* If tracking is off, `projman` never looks at timestamps of files or at the current time, 
 so there is no need to synchronize clocks.
 I believe `git` is similar in that respect.
 
@@ -70,13 +70,14 @@ In `projman` there is only one stage called `register` but it is seldom used if 
 
 * Just as for `.gitignore`, the file `.projman/ignore` is important for controlling what will be propagated.
 
-* `git status` warns you if a change has not been `add`ed by analysing the content of all files in
+* Operations `git commit -a` and `git status` detect changes by analysing the content of all files in
 the current directory. (subdirectories too ?)
-`projman` never looks inside the files, but it does compare file timestamps with the time of
-the latest `sync` operation.
-It uses the timestamp of a directory and, if that timestamp looks old enough,
+`projman` never looks inside the files, but (if tracking is active) it does compare file timestamps with 
+the time of the latest `sync` operation.
+It uses timestamps not only of files but of directories, too.
+If the timestamp of a directory is older than the latest `sync`,
 it will not analyse further timestamps of files or subdirectories therein.
-However, it never compares timestamps between remote machines, 
+However, `projman` never compares timestamps between remote machines, 
 so there is no need to synchronize clocks.
 
 * When propagating changes, `git` tries to solve conflicts through a tree-way `diff`.
@@ -97,7 +98,7 @@ Perhaps `git` is similar in that respect.
 `projman` should be useful for maintaining large collections
 of files with many subdirectories, when different people make changes independently
 of each other but rarely on the same file.
-The size of individual files has no impact on `projman`s performance, only their number
+The size of individual files has no impact on `projman`'s performance, only their number
 (on a logarithmic scale if they are well distributed in a tree of directories).
 Binary files are welcome, `projman` does not use `diff`
 (actually it never looks at the content of the files).
