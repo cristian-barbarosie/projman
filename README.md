@@ -66,6 +66,7 @@ In `projman` there is only one such operation, called `sync`.
 * `git` registers changes in a two-stage process (whose usefulness is not entirely clear to me) :
 `add` then `commit` (or the shortcut `commit -a`).
 In `projman` there is only one stage called `register` but it is seldom used if tracking is active.
+`git commit -a` is roughly equivalent to doing nothig in `projman` if tracking is active.
 
 * Just as for `.gitignore`, the file `.projman/ignore` is important for controlling what will be propagated.
 
@@ -75,10 +76,8 @@ the current directory. (subdirectories too ?)
 the latest `sync` operation.
 It uses the timestamp of a directory and, if that timestamp looks old enough,
 it will not analyse further timestamps of files or subdirectories therein.
-However, it does not compare timestamps between remote machines, 
+However, it never compares timestamps between remote machines, 
 so there is no need to synchronize clocks.
-
-* `git commit -a` is roughly equivalent to doing nothig in `projman` if tracking is active.
 
 * When propagating changes, `git` tries to solve conflicts through a tree-way `diff`.
 `projman` never looks inside the files, it only uses a system of tokens.
@@ -98,7 +97,7 @@ Perhaps `git` is similar in that respect.
 `projman` should be useful for maintaining large collections
 of files with many subdirectories, when different people make changes independently
 of each other but rarely on the same file.
-The size of individual files does matter for `projman`s performance, only their number
+The size of individual files has no impact on `projman`s performance, only their number
 (on a logarithmic scale if they are well distributed in a tree of directories).
 Binary files are welcome, `projman` does not use `diff`
 (actually it never looks at the content of the files).
