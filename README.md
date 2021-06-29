@@ -74,9 +74,9 @@ In `projman` there is only one stage called `register` but it is seldom used if 
 the current directory. (subdirectories too ?)
 `projman` never looks inside the files, but (if tracking is active) it does compare file timestamps with 
 the time of the latest `sync` operation.
-It uses timestamps not only of files but of directories, too.
 If the timestamp of a directory is older than the latest `sync`,
-it will not analyse further timestamps of files or subdirectories therein.
+it will not analyse further timestamps of files therein
+(but it will descend into subdirectories).
 However, `projman` never compares timestamps between remote machines, 
 so there is no need to synchronize clocks.
 
