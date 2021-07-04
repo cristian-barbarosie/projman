@@ -21,12 +21,12 @@ Thus, there are no branches in `projman`.
 * `git` offers operations `pull` and `push`.
 In `projman` there is only one such operation, called `sync`.
 
-* `git` registers changes in a two-stage process (whose usefulness is not entirely clear to me) :
+* `git` registers changes in a two-stage process (which I find slightly confusing) :
 `add` then `commit`.
 In `projman` there is only one stage called `register`.
 
 * Operations `git commit -a` and `git status` detect changes by analysing the content of all files in
-the current directory. (subdirectories too ?)
+the current directory, including subdirectories,
 `projman` never looks inside the files, so it cannot detect changes (if tracking is off).
 
 * You need to inform `git` about changes to a file __after__ you have edited (and saved) your file.
@@ -39,7 +39,8 @@ Of course, you must save all edited files before you `sync` them to some other p
 Also, after a `sync` operation, you must `register` any new changes again.
 
 * When propagating changes, `git` tries to solve conflicts through a tree-way `diff`.
-`projman` never looks inside the files, it only uses a system of tokens.
+`projman` never looks inside the files, it only uses a system of tokens describing the 
+modification history of each file.
 If changes have been made to the same file on different repositories,
 `projman` will bluntly report a conflict which you will have to solve manually.
 
@@ -49,7 +50,7 @@ are up-to-date, it does not descend into that directory for further analysis.
 So, for instance, if you give a `sync` command between two mirrors of the same project
 which are up-to-date, `projman` is extremely fast in deciding not to take any action
 because it only compares tokens relative to the root directory.
-Perhaps `git` is similar in that respect.
+I guess `git` is similar in that respect.
 
 * If tracking is off, `projman` never looks at timestamps of files or at the current time, 
 so there is no need to synchronize clocks.
@@ -63,7 +64,7 @@ Thus, there are no branches in `projman`.
 * `git` offers operations `pull` and `push`.
 In `projman` there is only one such operation, called `sync`.
 
-* `git` registers changes in a two-stage process (whose usefulness is not entirely clear to me) :
+* `git` registers changes in a two-stage process (which I find slightly confusing) :
 `add` then `commit` (or the shortcut `commit -a`).
 In `projman` there is only one stage called `register` but it is seldom used if tracking is active.
 `git commit -a` is roughly equivalent to doing nothing in `projman` if tracking is active.
@@ -71,7 +72,7 @@ In `projman` there is only one stage called `register` but it is seldom used if 
 * Just as for `.gitignore`, the file `.projman/ignore` is important for controlling what will be propagated.
 
 * Operations `git commit -a` and `git status` detect changes by analysing the content of all files in
-the current directory. (subdirectories too ?)
+the current directory, including subdirectories.
 `projman` never looks inside the files, but (if tracking is active) it does compare file timestamps with 
 the time of the latest `sync` operation.
 If the timestamp of a directory is older than the latest `sync`,
@@ -91,7 +92,7 @@ are up-to-date, it does not descend into that directory for further analysis.
 So, for instance, if you give a `sync` command between two mirrors of the same project
 which are up-to-date, `projman` is extremely fast in deciding not to take any action
 because it only compares tokens relative to the root directory.
-Perhaps `git` is similar in that respect.
+I guess `git` is similar in that respect.
 
 #### In short 
 
